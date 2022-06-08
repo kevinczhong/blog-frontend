@@ -28,7 +28,8 @@ export default {
       <h2>{{ post.title }}</h2>
       <img v-bind:src="post.image" v-bind:alt="post.title" />
       <p>{{ post.body }}</p>
-      <router-link v-bind:to="`/posts/${post.id}`">More Details</router-link>
+      <!-- <router-link v-bind:to="`/posts/${post.id}`">More Details</router-link> -->
+      <button v-on:click="$router.push(`/posts/${post.id}`)">More Details</button>
     </div>
   </div>
 </template>

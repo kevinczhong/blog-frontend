@@ -8,6 +8,11 @@ export default {
       errors: [],
     };
   },
+  created: function () {
+    axios.get("/posts/" + this.$route.params.id + ".json").then((response) => {
+      this.postParams = response.data;
+    });
+  },
   methods: {
     submit: function () {
       axios
