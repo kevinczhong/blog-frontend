@@ -18,6 +18,7 @@ export default {
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
+          this.errorStatus = error.response.status;
         });
     },
   },

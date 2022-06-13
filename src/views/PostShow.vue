@@ -19,6 +19,9 @@ export default {
         this.$router.push("/posts/");
       });
     },
+    getUserId: function () {
+      return localStorage.getItem("user_id");
+    },
   },
 };
 </script>
@@ -31,8 +34,10 @@ export default {
     <!-- <router-link to="/posts/">Back to all posts</router-link>
     <p><router-link v-bind:to="`/posts/${post.id}/edit`">Edit post</router-link></p> -->
     <p><button v-on:click="$router.push('/posts/')">Return to Main Page</button></p>
-    <p><button v-on:click="$router.push(`/posts/${post.id}/edit`)">Edit This Post</button></p>
-    <button v-on:click="deletePost">Delete This Post</button>
+    <div v-if="getUserId() == post.user_id">
+      <p><button v-on:click="$router.push(`/posts/${post.id}/edit`)">Edit This Post</button></p>
+      <button v-on:click="deletePost">Delete This Post</button>
+    </div>
   </div>
 </template>
 
