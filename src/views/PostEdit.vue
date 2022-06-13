@@ -19,6 +19,7 @@ export default {
         .patch("/posts/" + this.$route.params.id + ".json", this.postParams)
         .then((response) => {
           console.log(response.data);
+          localStorage.setItem("flashMessage", "Post Successfully Edited");
           this.$router.push("/posts/" + this.$route.params.id);
         })
         .catch((error) => {

@@ -16,6 +16,7 @@ export default {
     deletePost: function () {
       axios.delete("/posts/" + this.$route.params.id + ".json").then((response) => {
         console.log("Successfully Deleted", response.data);
+        localStorage.setItem("flashMessage", "Post Successfully Deleted");
         this.$router.push("/posts/");
       });
     },

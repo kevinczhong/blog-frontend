@@ -48,7 +48,7 @@ export default {
     |
     <router-link to="/logout" v-if="isLoggedIn">Logout</router-link>
   </nav>
-  <div v-if="flashMessage" class="alert alert-success">{{ flashMessage }}</div>
+  <div v-if="flashMessage" class="alert alert-success" v-on:click="flashMessage = null">{{ flashMessage }}</div>
   <router-view />
 </template>
 

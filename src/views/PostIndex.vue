@@ -5,6 +5,7 @@ export default {
   data: function () {
     return {
       posts: [],
+      titleFilter: "",
     };
   },
   created: function () {
@@ -20,6 +21,13 @@ export default {
     getUserId: function () {
       return localStorage.getItem("user_id");
     },
+    filterPosts: function () {
+      return this.posts.filter((post) => {
+        var lowerTitle = post.title.toLowerCase();
+        var lowerTitleFilter = this.titleFilter.toLowerCase();
+        return lowerTitle.includes(lowerTitleFilter);
+      });
+    },
   },
 };
 </script>
@@ -27,8 +35,15 @@ export default {
 <template>
   <div class="home container">
     <h1>Blog Posts</h1>
+    <p>
+      Search by title:
+      <input type="text" v-model="titleFilter" list="titles" />
+      <datalist id="titles">
+        <option v-for="post in filterPosts()" v-bind:key="post.id">{{ post.title }}</option>
+      </datalist>
+    </p>
     <div class="row">
-      <div class="col-sm-6" v-for="post in posts" v-bind:key="post.id">
+      <div class="col-sm-6" v-for="post in filterPosts()" v-bind:key="post.id">
         <div class="card">
           <div class="card-body">
             <img v-bind:src="post.image" class="card-img-top" v-bind:alt="post.title" />
